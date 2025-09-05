@@ -7,8 +7,16 @@ mainX.addEventListener('click', (e) => {
             case 'C':
                 clear();
                 break;
+            
+            case 'ج':
+                clear();
+                break;
 
             case 'DEL':
+                del();
+                break;
+            
+            case 'دل':
                 del();
                 break;
 
@@ -30,6 +38,16 @@ function addToDisplay(value) {
     // تحديد الإشارات الحسابية
     const operators = ['+', '-', '*', '/', '%', '^'];
     const isOperator = operators.includes(value);
+    
+    // التحقق مما إذا كانت الشاشة تعرض رسالة خطأ
+    const errorMessage = "Invalod Oparation";
+    const isError = displayArea.textContent === errorMessage;
+    
+    // إذا كانت الشاشة تعرض رسالة خطأ، امسح الخطأ وأضف القيمة الجديدة
+    if (isError) {
+        displayArea.textContent = value;
+        return;
+    }
     
     // الحصول على آخر حرف في منطقة العرض
     const lastChar = displayArea.textContent.slice(-1);
